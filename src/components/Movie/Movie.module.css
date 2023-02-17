@@ -1,0 +1,10 @@
+.Movie{
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+}
+
+h4{
+    height: 2%;
+    text-align: center;
+}

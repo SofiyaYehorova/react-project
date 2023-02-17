@@ -1,17 +1,20 @@
 import React from 'react';
+import {image} from "../../configs";
+
+import css from './Movie.module.css'
 
 const Movie = ({movie}) => {
-    const {id, title, original_title, backdrop_path, poster_path} = movie;
+    const {id, original_title, poster_path} = movie;
 
     return (
         <div>
-            <div>id:{id}</div>
-            <div>title:{title}</div>
-            <div>original_title:{original_title}</div>
-            <div>
-                <img src={backdrop_path} alt="picture"/>
-                </div>
-            <div>poster_path:{poster_path}</div>
+            <div className={css.Movie}>
+                <div>id:{id}</div>
+                <h4>{original_title}</h4>
+                <div> <img src={image + poster_path} alt="picture"/></div>
+            </div>
+
+
 
         </div>
     );
