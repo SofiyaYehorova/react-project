@@ -4,6 +4,11 @@ import {moviesService} from "../../services";
 
 const initialState = {
     movies: [],
+    id: null,
+    page: null,
+    results: null,
+    total_pages: null,
+    total_results: null,
     errors: null,
     loading: null
 };
@@ -27,7 +32,13 @@ const moviesSlice = createSlice({
     extraReducers: builder =>
         builder
             .addCase(getAll.fulfilled, (state, action) => {
-                state.movies = action.payload
+                const {id, page, results, total_pages, total_results} = action.payload;
+                state.movies = results
+                state.page = page
+                state.id = id
+                state.total_pages = total_pages
+                state.total_results = total_results
+                // state.movies = action.payload
             })
 });
 
