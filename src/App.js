@@ -1,9 +1,11 @@
 import React from 'react';
 
+import {MainLayout} from "./layouts";
+
 const App = () => {
     return (
         <div>
-            App
+            <MainLayout/>
         </div>
     );
 };
