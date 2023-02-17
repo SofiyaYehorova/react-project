@@ -10,8 +10,8 @@ const Movie = ({movie}) => {
         <div>
             <div className={css.Movie}>
                 <div>id:{id}</div>
-                <h4>{original_title}</h4>
-                <div> <img src={image + poster_path} alt="picture"/></div>
+                <p>{original_title}</p>
+                <img src={image + poster_path} alt="picture"/>
             </div>
 
 
