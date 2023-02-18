@@ -7,11 +7,10 @@ const Movie = ({movie}) => {
     const {id, original_title, poster_path} = movie;
 
     return (
-        <div>
-            <div className={css.Movie}>
-                <div>id:{id}</div>
+        <div className={css.Movie}>
+            <div>
                 <p>{original_title}</p>
-                <img src={image + poster_path} alt="picture"/>
+                <img src={image + poster_path} alt={original_title}/>
             </div>
 
 
