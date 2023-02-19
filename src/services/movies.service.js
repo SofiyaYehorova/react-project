@@ -1,8 +1,8 @@
 import {apiService} from "./api.service";
-import {urls} from "../configs";
+import {baseURL, urls} from "../configs";
 
 const moviesService = {
-    getAll: (page) => apiService.get(`${urls.movies}?page=${page}`),
+    getAll: (page) => apiService.get(`${baseURL}/${urls.page}${page}`),
     getById: (id) => apiService.get(`${urls.movie}/{id}`)
 }
 
