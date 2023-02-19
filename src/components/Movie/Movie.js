@@ -8,7 +8,6 @@ const Movie = ({movie}) => {
     const {original_title, poster_path, vote_average} = movie;
 
     return (
-        <Link to={`/movie/${movie.id}`}>
             <div className={css.Movie}>
 
                 <p>{original_title}</p>
@@ -16,10 +15,7 @@ const Movie = ({movie}) => {
 
                 <div>vote_average:{vote_average}</div>
 
-
-
             </div>
-        </Link>
 
     );
 

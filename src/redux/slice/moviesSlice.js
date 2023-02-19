@@ -4,15 +4,14 @@ import {moviesService} from "../../services";
 
 const initialState = {
     movies: [],
-    // movie:null,
     page: 1,
     errors: null,
-    loading: null
+    loading: true
 };
 
 const getAllMovies = createAsyncThunk(
     'moviesSlice/getAllMovies',
-    async ({page}, thunkAPI) => {
+    async (page, thunkAPI) => {
         try {
             const {data} = await moviesService.getAll(page);
             return data
@@ -27,14 +26,11 @@ const moviesSlice = createSlice({
     initialState,
     reducers: {
         nextPage: (state, action) => {
-            if (state.page < 500) {
-                state.page += action.payload;
-            }
+            if (state.page < 500) state.page += action.payload;
+
         },
-        prevPage:(state, action) => {
-            if (state.page>1){
-                state.page-=action.payload
-            }
+        prevPage: (state, action) => {
+            if (state.page > 1) state.page -= action.payload
         }
     },
     extraReducers: builder =>
