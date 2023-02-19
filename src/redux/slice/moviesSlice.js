@@ -4,20 +4,20 @@ import {moviesService} from "../../services";
 
 const initialState = {
     movies: [],
-    id: null,
-    page: null,
-    results: null,
-    total_pages: null,
-    total_results: null,
+    // id: null,
+    page: 1,
+    currentPage: 1,
+    total_pages: 500,
+    total_results: 0,
     errors: null,
     loading: null
 };
 
-const getAll = createAsyncThunk(
-    'moviesSlice/getAll',
-    async ({page}, thunkAPI) => {
+const getAllMovies = createAsyncThunk(
+    'moviesSlice/getAllMovies',
+    async ({currentPage}, thunkAPI) => {
         try {
-            const {data} = await moviesService.getAll(page);
+            const {data} = await moviesService.getAll(currentPage);
             return data
         } catch (e) {
             thunkAPI.rejectWithValue(e.response.data)
@@ -28,28 +28,40 @@ const getAll = createAsyncThunk(
 const moviesSlice = createSlice({
     name: 'moviesSlice',
     initialState,
-    reducers: {},
+    reducers: {
+        resetPage: (state) => {
+            state.currentPage = 1
+        },
+        setPage: (state, action) => {
+            state.currentPage = action.payload
+        }
+    },
     extraReducers: builder =>
         builder
-            .addCase(getAll.fulfilled, (state, action) => {
-                const {id, page, results, total_pages, total_results} = action.payload;
-                state.movies = results
-                state.page = page
-                state.id = id
-                state.total_pages = total_pages
-                state.total_results = total_results
-                // state.movies = action.payload
+            .addCase(getAllMovies.fulfilled, (state, action) => {
+                state.movies = action.payload.results
+                if (action.payload.total_pages <= 500) {
+                    state.total_pages = action.payload.total_pages
+                } else {
+                    state.total_pages = 500
+                }
+                state.loading = false
+            })
+            .addCase(getAllMovies.pending, (state, action) => {
+                state.loading = true
             })
 });
 
-const {reducer: movieReducer} = moviesSlice;
+const {reducer: movieReducer, actions: {resetPage, setPage}} = moviesSlice;
 
 const moviesAction = {
-    getAll
+    getAllMovies
 }
 
 export {
     moviesAction,
-    movieReducer
+    movieReducer,
+    resetPage,
+    setPage
 }
 
