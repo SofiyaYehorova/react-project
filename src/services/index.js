@@ -1,2 +1,2 @@
 export * from './api.service';
-export * from './moviesService'
+export * from './movies.service'

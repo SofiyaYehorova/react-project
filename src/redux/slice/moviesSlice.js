@@ -4,20 +4,17 @@ import {moviesService} from "../../services";
 
 const initialState = {
     movies: [],
-    // id: null,
+    // movie:null,
     page: 1,
-    currentPage: 1,
-    total_pages: 500,
-    total_results: 0,
     errors: null,
     loading: null
 };
 
 const getAllMovies = createAsyncThunk(
     'moviesSlice/getAllMovies',
-    async ({currentPage}, thunkAPI) => {
+    async ({page}, thunkAPI) => {
         try {
-            const {data} = await moviesService.getAll(currentPage);
+            const {data} = await moviesService.getAll(page);
             return data
         } catch (e) {
             thunkAPI.rejectWithValue(e.response.data)
@@ -29,39 +26,38 @@ const moviesSlice = createSlice({
     name: 'moviesSlice',
     initialState,
     reducers: {
-        resetPage: (state) => {
-            state.currentPage = 1
+        nextPage: (state, action) => {
+            if (state.page < 500) {
+                state.page += action.payload;
+            }
         },
-        setPage: (state, action) => {
-            state.currentPage = action.payload
+        prevPage:(state, action) => {
+            if (state.page>1){
+                state.page-=action.payload
+            }
         }
     },
     extraReducers: builder =>
         builder
             .addCase(getAllMovies.fulfilled, (state, action) => {
-                state.movies = action.payload.results
-                if (action.payload.total_pages <= 500) {
-                    state.total_pages = action.payload.total_pages
-                } else {
-                    state.total_pages = 500
-                }
+                state.movies = action.payload
                 state.loading = false
             })
-            .addCase(getAllMovies.pending, (state, action) => {
+            .addCase(getAllMovies.pending, (state) => {
                 state.loading = true
             })
 });
 
-const {reducer: movieReducer, actions: {resetPage, setPage}} = moviesSlice;
+const {reducer: movieReducer, actions: {nextPage, prevPage}} = moviesSlice;
 
 const moviesAction = {
-    getAllMovies
+    getAllMovies,
+    nextPage,
+    prevPage
 }
 
 export {
     moviesAction,
-    movieReducer,
-    resetPage,
-    setPage
+    movieReducer
 }
 

@@ -10,18 +10,20 @@ import css from './Movies.module.css'
 
 const Movies = () => {
 
-    const {movies, currentPage, total_page, loading} = useSelector(state => state.movies)
+    const {movies, loading, page} = useSelector(state => state.movies)
     const dispatch = useDispatch();
-    // let [query, setQuery] = useSearchParams({page: '1'});
 
     useEffect(() => {
-        dispatch(moviesAction.getAllMovies({currentPage}))
+        dispatch(moviesAction.getAllMovies(page))
     }, [dispatch]);
 
     return (
         <div>
             <div className={css.Movies}>
-                {movies.map(movie => <Movie key={movie.id} movie={movie}/>)}
+                {
+                    loading ? <h1>Loading</h1>
+                        :
+                        movies?.result.map(movie => <Movie key={movie.id} movie={movie}/>)}
             </div>
             <div>
                 <button>prev</button>
