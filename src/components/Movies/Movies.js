@@ -29,14 +29,13 @@ const Movies = () => {
             <div className={css.Movies}>
                 {movies.map(movie => <Movie key={movie.id} movie={movie}/>)}
             </div>
-
-                {filterParams !== '' &&
-                    <div>
-                        <button onClick={() => dispatch(moviesAction.setFilterParams(''))}>
-                            Click me!
-                        </button>
-                    </div>
-                }
+            {/*{filterParams !== '' &&*/}
+            {/*    <div>*/}
+            {/*        <button onClick={() => dispatch(moviesAction.setFilterParams(''))}>*/}
+            {/*            Click me!*/}
+            {/*        </button>*/}
+            {/*    </div>*/}
+            {/*}*/}
             <Pagination queryPage={queryPage}/>
         </div>
 
