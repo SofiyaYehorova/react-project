@@ -1,34 +1,43 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useSearchParams} from "react-router-dom";
 
 import {moviesAction} from "../../redux";
 import {Movie} from "../Movie/Movie";
+import {Pagination} from "../Pagination/Pagination";
 
 import css from './Movies.module.css'
 
 
 const Movies = () => {
-
-    const {movies, loading, page} = useSelector(state => state.movies)
+    const [movies, setMovies] = useState([]);
+    const {loading, page} = useSelector(state => state.movies)
     const dispatch = useDispatch();
 
+    const [searchParams, setSearchParams] = useSearchParams();
+    const queryPage = searchParams.get('page');
+
     useEffect(() => {
-        dispatch(moviesAction.getAllMovies(page))
-    }, [dispatch]);
+        moviesAction.setPage(queryPage)
+        dispatch(moviesAction.getAllMovies({page: queryPage}))
+            .then(({payload}) => setMovies([...payload.results]))
+    }, [page, queryPage]);
 
     return (
         <div>
+            {loading && <h1>Loading</h1>}
             <div className={css.Movies}>
-                {
-                    loading ? <h1>Loading</h1>
-                        :
-                        movies?.result.map(movie => <Movie key={movie.id} movie={movie}/>)}
+                {movies.map(movie => <Movie key={movie.id} movie={movie}/>)}
             </div>
-            <div>
-                <button>prev</button>
-                <button>next</button>
-            </div>
+
+                {filterParams !== '' &&
+                    <div>
+                        <button onClick={() => dispatch(moviesAction.setFilterParams(''))}>
+                            Click me!
+                        </button>
+                    </div>
+                }
+            <Pagination queryPage={queryPage}/>
         </div>
 
     );

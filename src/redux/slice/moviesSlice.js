@@ -6,7 +6,8 @@ const initialState = {
     movies: [],
     page: 1,
     errors: null,
-    loading: false
+    loading: false,
+    filterParams: ''
 };
 
 const getAllMovies = createAsyncThunk(
@@ -16,7 +17,7 @@ const getAllMovies = createAsyncThunk(
             const {data} = await moviesService.getAll(page);
             return data
         } catch (e) {
-            thunkAPI.rejectWithValue(e.response.data)
+            thunkAPI.rejectWithValue(e.response?.data)
         }
     }
 );
@@ -31,6 +32,12 @@ const moviesSlice = createSlice({
         },
         prevPage: (state, action) => {
             state.page -= -1
+        },
+        setPage: (state, action) => {
+            state.page = action.payload
+        },
+        setFilterParams: (state, action) => {
+            state.filterParams = action.payload
         }
     },
     extraReducers: builder =>
@@ -42,18 +49,25 @@ const moviesSlice = createSlice({
             .addCase(getAllMovies.pending, (state) => {
                 state.loading = true
             })
+            .addCase(getAllMovies.rejected, (state, action) => {
+                state.error = action.payload
+                state.loading = false
+            })
 });
 
-const {reducer: movieReducer, actions: {nextPage, prevPage}} = moviesSlice;
+const {reducer: moviesReducer, actions: {nextPage, prevPage, setPage, setFilterParams}} = moviesSlice;
 
 const moviesAction = {
     getAllMovies,
     nextPage,
-    prevPage
+    prevPage,
+    setPage,
+    setFilterParams
 }
 
 export {
     moviesAction,
-    movieReducer
+    moviesReducer,
+    moviesSlice
 }
 
