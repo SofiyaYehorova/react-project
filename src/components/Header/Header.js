@@ -5,7 +5,7 @@ import css from './Header.module.css'
 const Header = () => {
     return (
         <div className={css.Header}>
-            Header
+            Movie list
         </div>
     );
 };

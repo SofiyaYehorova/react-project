@@ -13,7 +13,7 @@ const MovieDetail = ({movie}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const {original_title, original_language, release_date, vote_average, vote_count, poster_path} = state;
+    const {original_title, original_language, overview, release_date, vote_average, vote_count, poster_path} = state;
 
 
     return (
@@ -21,7 +21,8 @@ const MovieDetail = ({movie}) => {
             <div>
                 <img src={image + poster_path} alt={original_title}/>
                 <p>Language:{original_language}</p>
-                <p>Release data:{release_date}</p>
+                <p>Overview:{overview}</p>
+                <div>Release data:{release_date}</div>
                 <p>Votes:{vote_count}</p>
                 <p>Vote Average:{vote_average}</p>
             </div>

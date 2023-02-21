@@ -7,7 +7,7 @@ import css from './Movie.module.css'
 import {useDispatch} from "react-redux";
 
 const Movie = ({movie}) => {
-    const {original_title, poster_path, vote_average} = movie;
+    const {original_title, poster_path, overview, vote_average} = movie;
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -15,6 +15,7 @@ const Movie = ({movie}) => {
         <div className={css.Movie} onClick={() =>navigate('/movie/details', {state:movie})}>
                      <p>{original_title}</p>
             <img src={image + poster_path} alt={original_title}/>
+
 
             <div>vote_average:{vote_average}</div>
 
