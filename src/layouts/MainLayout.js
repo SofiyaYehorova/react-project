@@ -12,8 +12,8 @@ const MainLayout = () => {
                 <input type="text" placeholder={"Search...."} />
                 <button>SEARCH</button>
             </div>
-            <Outlet/>
             <Genres/>
+            <Outlet/>
             <Footer/>
         </div>
     );
