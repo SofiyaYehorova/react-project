@@ -2,28 +2,35 @@ import React, {useEffect} from 'react';
 import {useLocation, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {moviesAction} from "../../redux";
+import {image} from "../../configs";
 
-const MovieDetail = () => {
+const MovieDetail = ({movie}) => {
     const location = useLocation();
     console.log(location);
     const {state} = location;
 
-    const {page, movie} = useSelector(state => state.movies);
+    // const {movies} = useSelector(state => state.movies);
     const dispatch = useDispatch();
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
-    const {title} = state;
+    const {original_title, original_language, release_date, vote_average, vote_count, poster_path} = state;
 
-    useEffect(() => {
-
-    }, [])
 
     return (
         <div>
-            <h1>{title}</h1>
+            <div>
+                <img src={image + poster_path} alt={original_title}/>
+                <p>Language:{original_language}</p>
+                <p>Release data:{release_date}</p>
+                <p>Votes:{vote_count}</p>
+                <p>Vote Average:{vote_average}</p>
+            </div>
+            <button onClick={() => navigate('/movies/?page=$(page)')}>
+                Back
+            </button>
         </div>
     );
-};
+}
 
 
 export {

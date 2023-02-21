@@ -22,18 +22,6 @@ const getAllMovies = createAsyncThunk(
     }
 );
 
-const getMovieById = createAsyncThunk(
-    'moviesSlice/getById',
-    async ({id}, thunkAPI) => {
-        try {
-            const {data} = await moviesService.getById(id);
-            return data
-        } catch (e) {
-            thunkAPI.rejectWithValue(e.response?.data)
-        }
-    }
-);
-
 const moviesSlice = createSlice({
     name: 'moviesSlice',
     initialState,
@@ -79,8 +67,6 @@ const moviesAction = {
 
 export {
     moviesAction,
-    moviesReducer,
-    moviesSlice,
-    getMovieById
+    moviesReducer
 }
 

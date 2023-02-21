@@ -11,16 +11,16 @@ import css from './Movies.module.css'
 
 const Movies = () => {
     const [movies, setMovies] = useState([]);
-    const {loading, page} = useSelector(state => state.movies)
+    const {loading, page, filterParams} = useSelector(state => state.movies)
     const dispatch = useDispatch();
 
-    const [searchParams, setSearchParams] = useSearchParams();
-    const queryPage = searchParams.get('page');
+    const [query, setQuery] = useSearchParams();
+    const queryPage = query.get('page');
 
     useEffect(() => {
         moviesAction.setPage(queryPage)
         dispatch(moviesAction.getAllMovies({page: queryPage}))
-            .then(({payload}) => setMovies([...payload.results]))
+            .then(({payload}) => setMovies(payload.results))
     }, [page, queryPage]);
 
     return (

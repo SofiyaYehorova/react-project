@@ -13,6 +13,7 @@ const App = () => {
                     <Route index element={<Navigate to={'/movies'}/>}/>
                     <Route path={'/movies'} element={<MoviesPage/>}/>
                     <Route path={'/movie/details'} element={<MovieDetail/>}/>
+                    {/*<Route path={'/movie/:id'} element={<MovieDetail/>}/>*/}
                 </Route>
             </Routes>
         </div>
