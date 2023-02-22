@@ -22,6 +22,7 @@ const Pagination = ({queryPage}) => {
             }}>Next
             </button>
         </div>
+
         // <div>
         //     <button onClick={()=>dispatch(moviesAction.prevPage(1))}>prev</button>
         //     <button onClick={()=>dispatch(moviesAction.nextPage(1))}>next</button>
