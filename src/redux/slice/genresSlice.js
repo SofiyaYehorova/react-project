@@ -21,13 +21,14 @@ const getAllGenres = createAsyncThunk(
         }
     }
 );
+
 const genresSlice = createSlice({
     name: 'genresSlice',
     initialState,
     reducers: {
-        // getGenre: (state, action) => {
-        //     state.genre = action.payload
-        // }
+        getGenre: (state, action) => {
+            state.genre = action.payload
+        }
     },
     extraReducers: builder =>
         builder
@@ -43,15 +44,11 @@ const genresSlice = createSlice({
             })
 });
 
-const {reducer: genresReducer
-    // ,
-    // action:
-    // {getGenre}
-} = genresSlice;
+const {reducer: genresReducer, actions: {getGenre}} = genresSlice;
 
 const genresAction = {
     getAllGenres,
-    // getGenre
+    getGenre
 }
 
 export {
