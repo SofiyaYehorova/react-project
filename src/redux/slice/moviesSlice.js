@@ -6,12 +6,14 @@ const initialState = {
     movies: [],
     movie: null,
     genres: [],
-    search: [],
+    // search: [],
+    currentGenres: [],
     page: 1,
-    total_pages: 500,
+    show: true,
+    // total_pages: 500,
     errors: null,
     loading: false,
-    filterParams: ''
+    // filterParams: ''
 };
 
 const getAllMovies = createAsyncThunk(
@@ -40,21 +42,9 @@ const getMovieById = createAsyncThunk(
 
 const getMoviesByGenre = createAsyncThunk(
     'moviesSlice/getMoviesByGenre',
-    async ({page, id}, thunkAPI) => {
-        try {
-            const {data} = await genresService.getAllGenres(id, page);
-            return data
-        } catch (e) {
-            thunkAPI.rejectWithValue(e.response?.data)
-        }
-    }
-);
-
-const getMovieGenres = createAsyncThunk(
-    'moviesSlice/getMovieGenres',
     async (_, thunkAPI) => {
         try {
-            const {data} = await genresService.getAllGenres();
+            const {data} = await genresService.getGenres();
             return data
         } catch (e) {
             thunkAPI.rejectWithValue(e.response?.data)
@@ -62,60 +52,85 @@ const getMovieGenres = createAsyncThunk(
     }
 );
 
-const getByMoviesSearch = createAsyncThunk(
-    'moviesSlice/getByMoviesSearch',
-    async ({search}, thunkAPI) => {
+const searchMovieGenres = createAsyncThunk(
+    'moviesSlice/searchMovieGenres',
+    async ({currentGenres}, thunkAPI) => {
         try {
-            const {data} = await moviesService.getByMovieSearch(search);
+            const {data} = await genresService.searchByGenre(currentGenres);
             return data
         } catch (e) {
             thunkAPI.rejectWithValue(e.response?.data)
         }
     }
 );
+
+const searchMovie = createAsyncThunk(
+    'moviesSlice/searchMovie',
+    async (arg, thunkAPI) => {
+        try {
+            const {data} = await moviesService.searchMovie(arg);
+            return data
+        } catch (e) {
+            thunkAPI.rejectWithValue(e.response?.data)
+        }
+    }
+);
+
 const moviesSlice = createSlice({
     name: 'moviesSlice',
     initialState,
     reducers: {
         nextPage: (state, action) => {
-            state.page += 1;
+            if (state.page < 500) state.page += action.payload
+            // state.page += 1;
 
         },
         prevPage: (state, action) => {
-            state.page -= -1
+            if (state.page > 1) state.page -= action.payload
+            // state.page -= -1
         },
-        setPage: (state, action) => {
-            state.page = action.payload
+        show: (state, action) => {
+            state.show = action.payload
         },
-        setFilterParams: (state, action) => {
-            state.filterParams = action.payload
+        selectGenre: (state, action) => {
+            state.currentGenres.push(action.payload)
+        },
+        deleteGenres: (state, action) => {
+            const index = state.currentGenre.findIndex(genre => genre.id === action.payload);
+            state.currentGenres.splice(index, 1)
         }
+        // setPage: (state, action) => {
+        //     state.page = action.payload
+        // },
+        // setFilterParams: (state, action) => {
+        //     state.filterParams = action.payload
+        // }
     },
     extraReducers: builder =>
         builder
             .addCase(getAllMovies.fulfilled, (state, action) => {
                 state.movies = action.payload
-                state.page = action.payload
+                // state.page = action.payload
                 state.loading = false
             })
             .addCase(getMovieById.fulfilled, (state, action) => {
                 state.movies = action.payload
-                state.page = action.payload
+                // state.page = action.payload
                 state.loading = false
             })
             .addCase(getMoviesByGenre.fulfilled, (state, action) => {
                 state.movies = action.payload
-                state.page = action.payload
+                // state.page = action.payload
                 state.loading = false
             })
-            .addCase(getMovieGenres.fulfilled, (state, action) => {
+            .addCase(searchMovieGenres.fulfilled, (state, action) => {
                 state.movies = action.payload
-                state.page = action.payload
+                // state.page = action.payload
                 state.loading = action.payload
             })
-            .addCase(getByMoviesSearch.fulfilled, (state, action) => {
+            .addCase(searchMovie.fulfilled, (state, action) => {
                 state.movies = action.payload
-                state.page = action.payload
+                // state.page = action.payload
                 state.loading = action.payload
             })
             .addCase(getAllMovies.pending, (state) => {
@@ -127,10 +142,10 @@ const moviesSlice = createSlice({
             .addCase(getMoviesByGenre.pending, (state) => {
                 state.loading = true
             })
-            .addCase(getMovieGenres.pending, (state) => {
+            .addCase(searchMovieGenres.pending, (state) => {
                 state.loading = true
             })
-            .addCase(getByMoviesSearch.pending, (state) => {
+            .addCase(searchMovie.pending, (state) => {
                 state.loading = true
             })
             .addCase(getAllMovies.rejected, (state, action) => {
@@ -145,11 +160,11 @@ const moviesSlice = createSlice({
                 state.error = action.payload
                 state.loading = false
             })
-            .addCase(getMovieGenres.rejected, (state, action) => {
+            .addCase(searchMovieGenres.rejected, (state, action) => {
                 state.error = action.payload
                 state.loading = false
             })
-            .addCase(getByMoviesSearch.rejected, (state, action) => {
+            .addCase(searchMovie.rejected, (state, action) => {
                 state.error = action.payload
                 state.loading = false
             })
@@ -157,19 +172,24 @@ const moviesSlice = createSlice({
 
 const {
     reducer: moviesReducer
-    , actions: {nextPage, prevPage, setPage, setFilterParams}
+    , actions: {
+        nextPage, prevPage, show, deleteGenres,
+        // setPage, setFilterParams
+    }
 } = moviesSlice;
 
 const moviesAction = {
     getAllMovies,
-    // getMovieById,
-    // getMoviesByGenre,
-    // getMovieGenres,
-    // getByMoviesSearch
+    getMovieById,
+    getMoviesByGenre,
+    searchMovieGenres,
+    searchMovie,
     nextPage,
     prevPage,
-    setPage,
-    setFilterParams
+    show,
+    deleteGenres,
+    // setPage,
+    // setFilterParams
 }
 
 export {

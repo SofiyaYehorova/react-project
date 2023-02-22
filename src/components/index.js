@@ -4,5 +4,7 @@ export * from './Genres/Genres'
 export * from './Genre/Genre'
 export * from './Movie/Movie';
 export * from './Movies/Movies'
+export * from './MovieList/MovieList'
+export * from './MovieCard/MovieCard'
 export * from './MovieDetails/MovieDetail'
 export * from './Pagination/Pagination'
