@@ -66,9 +66,11 @@ const getMovieById = createAsyncThunk(
 //
 const searchMovie = createAsyncThunk(
     'moviesSlice/searchMovie',
-    async (arg, thunkAPI) => {
+    async (movie, thunkAPI) => {
         try {
-            const {data} = await searchMovieService.searchMovie(arg);
+            const {data} = await searchMovieService.searchMovie(movie);
+            // const {data} = await searchMovieService.getBySearchMovie(arg);
+
             return data
         } catch (e) {
             thunkAPI.rejectWithValue(e.response?.data)
