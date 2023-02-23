@@ -32,13 +32,11 @@ const Genres = () => {
 
     return (
         <div>
-            hello genres
-
             <div>
                 <div className={"genre_select"}>
                     {
                         genres?.genres?.map(genre => <div key={genre.id}>
-                            <label className={"checkbox-el"}>
+                            <button className={"checkbox-el"}>
                                 <input
                                     type="checkbox"
                                     value={genre.name}
@@ -46,7 +44,7 @@ const Genres = () => {
                                     onClick={() => handleSubmit(genre.id)}
                                 />
                                 {genre.name}
-                            </label>
+                            </button>
                         </div>)
                     }
                 </div>

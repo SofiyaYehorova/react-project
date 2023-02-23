@@ -30,6 +30,26 @@ body {
     margin-right: 10px;
 }
 
+.light, .night  {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.genre_select{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* {*/
+/*    width: 35px;*/
+/*    height: 35px;*/
+/*}*/
+
 /*.icon {*/
 /*    font-size: 20px;*/
 /*}*/
