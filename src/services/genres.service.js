@@ -7,7 +7,7 @@ const genresService = {
 
     getGenres: () => apiService.get(urls.genres),
     searchByGenre: (genre) => apiService.get(`${urls.movies}?&with_genres=${genre}`)
-}
+    }
 
 export {
     genresService

@@ -1,10 +1,10 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
-import {genresService, moviesService} from "../../services";
+import {genresService, moviesService, searchMovieService} from "../../services";
 
 const initialState = {
     movies: [],
-    // movie: null,
+    movie: null,
     // genres: [],
     // search: [],
     // currentGenres: [],
@@ -28,17 +28,17 @@ const getAllMovies = createAsyncThunk(
     }
 );
 
-// const getMovieById = createAsyncThunk(
-//     'moviesSlice/getMovieById',
-//     async ({id}, thunkAPI) => {
-//         try {
-//             const {data} = await moviesService.getMovieById(id);
-//             return data
-//         } catch (e) {
-//             thunkAPI.rejectWithValue(e.response?.data)
-//         }
-//     }
-// );
+const getMovieById = createAsyncThunk(
+    'moviesSlice/getMovieById',
+    async (id, thunkAPI) => {
+        try {
+            const {data} = await moviesService.getMovieById(id);
+            return data
+        } catch (e) {
+            thunkAPI.rejectWithValue(e.response?.data)
+        }
+    }
+);
 //
 // const getMoviesByGenre = createAsyncThunk(
 //     'moviesSlice/getMoviesByGenre',
@@ -64,17 +64,17 @@ const getAllMovies = createAsyncThunk(
 //     }
 // );
 //
-// const searchMovie = createAsyncThunk(
-//     'moviesSlice/searchMovie',
-//     async (arg, thunkAPI) => {
-//         try {
-//             const {data} = await moviesService.searchMovie(arg);
-//             return data
-//         } catch (e) {
-//             thunkAPI.rejectWithValue(e.response?.data)
-//         }
-//     }
-// );
+const searchMovie = createAsyncThunk(
+    'moviesSlice/searchMovie',
+    async (arg, thunkAPI) => {
+        try {
+            const {data} = await searchMovieService.searchMovie(arg);
+            return data
+        } catch (e) {
+            thunkAPI.rejectWithValue(e.response?.data)
+        }
+    }
+);
 
 const moviesSlice = createSlice({
     name: 'moviesSlice',
@@ -113,11 +113,11 @@ const moviesSlice = createSlice({
                 // state.page = action.payload
                 state.loading = false
             })
-            // .addCase(getMovieById.fulfilled, (state, action) => {
-            //     state.movies = action.payload
-            //     // state.page = action.payload
-            //     state.loading = false
-            // })
+            .addCase(getMovieById.fulfilled, (state, action) => {
+                state.movies = action.payload
+                // state.page = action.payload
+                state.loading = false
+            })
             // .addCase(getMoviesByGenre.fulfilled, (state, action) => {
             //     state.movies = action.payload
             //     // state.page = action.payload
@@ -128,34 +128,34 @@ const moviesSlice = createSlice({
             //     // state.page = action.payload
             //     state.loading = action.payload
             // })
-            // .addCase(searchMovie.fulfilled, (state, action) => {
-            //     state.movies = action.payload
-            //     // state.page = action.payload
-            //     state.loading = action.payload
-            // })
+            .addCase(searchMovie.fulfilled, (state, action) => {
+                state.movies = action.payload
+                // state.page = action.payload
+                state.loading = action.payload
+            })
             .addCase(getAllMovies.pending, (state) => {
                 state.loading = true
             })
-            // .addCase(getMovieById.pending, (state) => {
-            //     state.loading = true
-            // })
+            .addCase(getMovieById.pending, (state) => {
+                state.loading = true
+            })
             // .addCase(getMoviesByGenre.pending, (state) => {
             //     state.loading = true
             // })
             // .addCase(searchMovieGenres.pending, (state) => {
             //     state.loading = true
             // })
-            // .addCase(searchMovie.pending, (state) => {
-            //     state.loading = true
-            // })
+            .addCase(searchMovie.pending, (state) => {
+                state.loading = true
+            })
             .addCase(getAllMovies.rejected, (state, action) => {
                 state.error = action.payload
                 state.loading = false
             })
-            // .addCase(getMovieById.rejected, (state, action) => {
-            //     state.error = action.payload
-            //     state.loading = false
-            // })
+            .addCase(getMovieById.rejected, (state, action) => {
+                state.error = action.payload
+                state.loading = false
+            })
             // .addCase(getMoviesByGenre.rejected, (state, action) => {
             //     state.error = action.payload
             //     state.loading = false
@@ -164,10 +164,10 @@ const moviesSlice = createSlice({
             //     state.error = action.payload
             //     state.loading = false
             // })
-            // .addCase(searchMovie.rejected, (state, action) => {
-            //     state.error = action.payload
-            //     state.loading = false
-            // })
+            .addCase(searchMovie.rejected, (state, action) => {
+                state.error = action.payload
+                state.loading = false
+            })
 });
 
 const {
@@ -182,10 +182,10 @@ const {
 
 const moviesAction = {
     getAllMovies,
-    // getMovieById,
+    getMovieById,
     // getMoviesByGenre,
     // searchMovieGenres,
-    // searchMovie,
+    searchMovie,
     nextPage,
     prevPage,
     // show,

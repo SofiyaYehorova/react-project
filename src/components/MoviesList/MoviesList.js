@@ -7,13 +7,12 @@ import {Movie} from "../Movie/Movie";
 import {Pagination} from "../Pagination/Pagination";
 
 import css from './Movies.module.css'
-import {set} from "react-hook-form";
 
 
-const Movies = () => {
+const MoviesList = () => {
     const [movies, setMovies] = useState([]);
     const {loading, page, filterParams} = useSelector(state => state.movies)
-    const {genre} = useSelector(state => state.genres);
+    // const {genre} = useSelector(state => state.genres);
     const dispatch = useDispatch();
     const [query, setQuery] = useSearchParams();
     const queryPage = query.get('page');
@@ -25,22 +24,22 @@ const Movies = () => {
             .then(({payload}) => setMovies(payload.results))
     }, [page, queryPage]);
 
-    useEffect(() => {
-        if (genre) {
-            setMovies(movies.filter(movie => movie.genre_ids.includes(genre.id)))
-        } else {
-            dispatch(moviesAction.getAllMovies({page: queryPage}))
-                .then(({payload}) => setMovies(payload.results))
-        }
-    }, [genre])
+    // useEffect(() => {
+    //     if (genre) {
+    //         setMovies(movies.filter(movie => movie.genre_ids.includes(genre.id)))
+    //     } else {
+    //         dispatch(moviesAction.getAllMovies({page: queryPage}))
+    //             .then(({payload}) => setMovies(payload.results))
+    //     }
+    // }, [genre])
 
-    useEffect(() => {
-        setMovies(movies.filter(movie => movie.title.includes(filterParams)))
-        if (filterParams === '') {
-            dispatch(moviesAction.getAllMovies({page: queryPage}))
-                .then(({payload}) => setMovies(payload.results))
-        }
-    }, [filterParams])
+    // useEffect(() => {
+    //     setMovies(movies.filter(movie => movie.title.includes(filterParams)))
+    //     if (filterParams === '') {
+    //         dispatch(moviesAction.getAllMovies({page: queryPage}))
+    //             .then(({payload}) => setMovies(payload.results))
+    //     }
+    // }, [filterParams])
 
     return (
         <div>
@@ -92,5 +91,5 @@ const Movies = () => {
 };
 
 export {
-    Movies
+    MoviesList
 };

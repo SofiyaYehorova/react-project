@@ -1,11 +1,11 @@
 import React from 'react';
 
-import {Movies} from "../../components";
+import {MoviesList} from "../../components";
 
 const MoviesPage = () => {
     return (
         <div>
-            <Movies/>
+            <MoviesList/>
         </div>
 
     );

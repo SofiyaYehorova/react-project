@@ -12,8 +12,8 @@ const Movie = ({movie}) => {
     const navigate = useNavigate();
 
     return (
-        <div className={css.Movie} onClick={() =>navigate('/movie/details', {state:movie})}>
-                     <p>{original_title}</p>
+        <div className={css.Movie} onClick={() => navigate('/movie/details', {state: movie})}>
+            <p>{original_title}</p>
             <img src={image + poster_path} alt={original_title}/>
             <div>vote_average:{vote_average}</div>
         </div>
