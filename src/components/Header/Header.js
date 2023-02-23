@@ -1,19 +1,27 @@
 import React from 'react';
-
-
-import css from './Header.module.css'
-
 import {SearchMovie} from "../SearchMovie/SearchMovie";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+
+import '../../index.css'
+import {faLightbulb} from "@fortawesome/free-solid-svg-icons";
+
 
 const Header = () => {
 
     return (
-        <div
-            // className={css.Header}
-        >
-            hello header
+        <div>
+            <div className={'wrapper'}>
+                hello header
+                <div className={'icon-user'}>
+                    <img scr="https://w7.pngwing.com/pngs/627/693/png-transparent-computer-icons-user-user-icon-thumbnail.png" alt='user-icon'/>
+                    {/*<FontAwesomeIcon  icon="fa-solid fa-user" />*/}
+                    {/*<FontAwesomeIcon className={'icon'} icon={"fa-solid fa-user"}></FontAwesomeIcon>*/}
+                    {/*<FontAwesomeIcon className={'icon'} icon={faLightbulb}></FontAwesomeIcon>*/}
+                </div>
+            </div>
+
             <hr/>
-          <SearchMovie/>
+            <SearchMovie/>
         </div>
     );
 };

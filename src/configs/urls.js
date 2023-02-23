@@ -1,17 +1,16 @@
 const baseURL = 'https://api.themoviedb.org/3'
 
 const urls = {
-    movies:'/discover/movie/?page=',
-    // posts:'/genre/movie/list',
-
-    // movies: '/discover/movies',
+    movies: '/discover/movie/?page=',
     movie: '/movie',
-    // actors: '/person/popular',
-    // actor: '/person',
     genres: '/genre/movie/list',
     searchMovie: '/search/movie',
-    // searchActor: '/search/person'
 
+    // movies: '/discover/movies',
+    // actors: '/person/popular',
+    // actor: '/person',
+    // searchActor: '/search/person'
+// posts:'/genre/movie/list',
 }
 
 

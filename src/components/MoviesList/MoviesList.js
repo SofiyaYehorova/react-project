@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useSearchParams} from "react-router-dom";
 
-import {moviesAction} from "../../redux";
+import {genresAction, moviesAction} from "../../redux";
 import {Movie} from "../Movie/Movie";
 import {Pagination} from "../Pagination/Pagination";
 
@@ -11,11 +11,19 @@ import css from './Movies.module.css'
 
 const MoviesList = () => {
     const [movies, setMovies] = useState([]);
-    const {loading, page, filterParams} = useSelector(state => state.movies)
-    // const {genre} = useSelector(state => state.genres);
+    const {loading, page} = useSelector(state => state.movies)
+    const {genre, currentGenre} = useSelector(state => state.genres);
     const dispatch = useDispatch();
     const [query, setQuery] = useSearchParams();
     const queryPage = query.get('page');
+
+    // useEffect(() => {
+    //     if (!currentGenre) {
+    //         dispatch(genresAction.searchByGenre(page))
+    //     } else {
+    //         dispatch(genresAction.searchByGenre({currentGenre}))
+    //     }
+    // }, [page,currentGenre]);
 
 
     useEffect(() => {
@@ -33,13 +41,6 @@ const MoviesList = () => {
     //     }
     // }, [genre])
 
-    // useEffect(() => {
-    //     setMovies(movies.filter(movie => movie.title.includes(filterParams)))
-    //     if (filterParams === '') {
-    //         dispatch(moviesAction.getAllMovies({page: queryPage}))
-    //             .then(({payload}) => setMovies(payload.results))
-    //     }
-    // }, [filterParams])
 
     return (
         <div>
