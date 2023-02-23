@@ -5,6 +5,8 @@ import {MainLayout} from "./layouts";
 import {MoviesPage} from "./pages";
 import {Genres, Header, MovieDetail, MovieList} from "./components";
 
+import css from './index.css'
+
 const App = () => {
     return (
         <div>
