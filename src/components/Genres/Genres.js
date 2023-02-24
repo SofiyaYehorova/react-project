@@ -21,9 +21,6 @@ const Genres = () => {
     return (
         <div>
             <div className={"genre_select"}>
-                <div>
-                    <button onClick={() => dispatch(moviesAction.show(false))}>Filter genres</button>
-                </div>
                 {
                     genres?.genres?.map(genre => <div key={genre.id}>
                         <label className={"checkbox-el"}>
