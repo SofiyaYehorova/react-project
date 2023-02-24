@@ -19,7 +19,6 @@ body {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    /*margin-right: 10px;*/
 }
 
 .light, .night {
@@ -32,17 +31,15 @@ body {
     display: flex;
     width: 30%;
     flex-direction: column;
-    /*flex-wrap: wrap;*/
-    /*justify-content: space-around;*/
-    /*gap: 10px;*/
-    /*margin-top: 20px;*/
 }
 
 .containerMovies {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
 
+    gap: 15px;
 }
 
 .movie {
@@ -51,33 +48,27 @@ body {
     flex-direction: column;
     justify-content: space-around;
 
-    margin-left: 2%;
 }
 
-/*.movieCard {*/
-/*    width: 30%;*/
-/*    display: flex;*/
-/*    border: 2px solid red;*/
+.movieCard {
+    display: flex;
+    border: 2px solid red;
+    flex-direction: column;
 
-/*}*/
+
+}
 
 .box_movieCard {
-    width: 100%;
     display: flex;
     flex-direction: row;
 }
 
 .left_part_movieCard {
-    width: 70px;
+    width: 70%;
 }
 
-/*.imageCard {*/
-/*    width: 200px;*/
-/*    height: 300px;*/
-/*}*/
-
 .right_part_movieCard {
-    width: 27%;
+    width: 30%;
     display: flex;
     flex-direction: column;
 }
