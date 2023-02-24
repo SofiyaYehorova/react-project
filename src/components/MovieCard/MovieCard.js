@@ -3,9 +3,11 @@ import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 
 import {image} from "../../configs";
+import {Rating} from "../Rating/Rating";
 
 import css from '../../App.css'
-import {Rating} from "../Rating/Rating";
+
+
 
 const MovieCard = ({movie}) => {
     const {original_title, poster_path, vote_average} = movie;
@@ -33,11 +35,12 @@ const MovieCard = ({movie}) => {
                         }
                     </div>
                     <div className={'right_part_movieCard'}>
-                        <h5>
+                        <div className={'genre-badge'}>
                             {
-                                movie?.genre_ids.map(value => <div key={value}> {findGenre(value)}</div>)
+                                movie?.genre_ids.map(value =>
+                                    <button key={value} className={'genre-badge_button'}>{findGenre(value)}</button>)
                             }
-                        </h5>
+                        </div>
                     </div>
                 </div>
                 <h4>{movie.release_date}</h4>

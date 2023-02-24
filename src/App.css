@@ -134,5 +134,14 @@ h2 {
     justify-content: right;
     text-align: center;
 }
+.genre-badge{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+.genre-badge_button{
+    background: aliceblue;
+    border-radius: 7px;
+}
 
 
