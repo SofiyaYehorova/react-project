@@ -1,7 +1,6 @@
 import React from 'react';
 import {Route, Routes} from "react-router-dom";
 
-
 import {Genres, Header, MovieDetail, MoviesList} from "./components";
 
 import css from './index.css'

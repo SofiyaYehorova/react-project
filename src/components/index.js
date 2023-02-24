@@ -1,7 +1,6 @@
 export * from './Footer/Footer';
 export * from './Header/Header';
 export * from './Genres/Genres'
-export * from './Movie/Movie';
 export * from './MoviesList/MoviesList'
 export * from './MovieCard/MovieCard'
 export * from './MovieDetail/MovieDetail'

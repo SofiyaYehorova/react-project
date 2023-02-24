@@ -11,7 +11,7 @@ const Header = () => {
 
     return (
 
-        <div className={'wrapper'}>
+        <div className={'header'}>
             <p>Movie List</p>
             <SearchMovie/>
             <div className={'icon'}>

@@ -18,8 +18,8 @@ const MovieCard = ({movie}) => {
     return (
         <Link to={`/movie/${movie.id}`} className={'movie'}>
             <div className={'movieCard'}>
+                <h4>{movie.title}</h4>
                 <div className={'box_movieCard'}>
-                    <h2>{movie.title}</h2>
                     <div className={'left_part_movieCard'}>
                         {
                             movie.poster_path ?
@@ -31,22 +31,20 @@ const MovieCard = ({movie}) => {
                                 />
                         }
                     </div>
-
                     <div className={'right_part_movieCard'}>
-                        <h4>
+                        <h5>
                             {
                                 movie?.genre_ids.map(value => <div key={value}> {findGenre(value)}</div>)
                             }
-                        </h4>
+                        </h5>
                     </div>
                 </div>
-                );
                 <p>{movie.release_date}</p>
-                <h3 className={"genre_container"}>
+                <div className={"genre_container"}>
                     {
                         movie?.genre_ids.map(value => <div key={value}> {findGenre(value)}</div>)
                     }
-                </h3>
+                </div>
                 <div className={'rating'}>vote_average:{vote_average}</div>
                 {/*<Rating rating={movie.vote_average}/>*/}
             </div>

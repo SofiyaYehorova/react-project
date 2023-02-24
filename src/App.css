@@ -5,7 +5,7 @@ body {
 
 }
 
-.wrapper {
+.header {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -13,6 +13,10 @@ body {
     background: #d1ffff;
     height: 100px;
     color: darkblue;
+}
+
+a {
+    text-decoration: none;
 }
 
 .icon-logo {
@@ -44,9 +48,10 @@ body {
 
 .movie {
     width: 23%;
+    min-height: 600px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    /*justify-content: space-around;*/
 
 }
 
@@ -54,8 +59,10 @@ body {
     display: flex;
     border: 2px solid red;
     flex-direction: column;
+}
 
-
+h4{
+    text-align: center;
 }
 
 .box_movieCard {
@@ -78,5 +85,45 @@ body {
     height: 2%;
 }
 
+.movie_detail-container {
+    width: 100%;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+h2 {
+    text-align: center;
+}
+
+.movie_detail-box {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.image_detail {
+    width: 40%;
+    height: 90%;
+
+}
+
+.movie_content_box {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.back_to_list {
+    width: 10%;
+    height: 6%;
+    display: flex;
+    justify-content: right;
+    text-align: center;
+}
 
 
