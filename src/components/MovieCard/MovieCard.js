@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import {image} from "../../configs";
 
 import css from '../../App.css'
+import {Rating} from "../Rating/Rating";
 
 const MovieCard = ({movie}) => {
     const {original_title, poster_path, vote_average} = movie;
@@ -18,7 +19,7 @@ const MovieCard = ({movie}) => {
     return (
         <Link to={`/movie/${movie.id}`} className={'movie'}>
             <div className={'movieCard'}>
-                <h4>{movie.title}</h4>
+                <div className={'movie_name'}>{movie.title}</div>
                 <div className={'box_movieCard'}>
                     <div className={'left_part_movieCard'}>
                         {
@@ -39,14 +40,13 @@ const MovieCard = ({movie}) => {
                         </h5>
                     </div>
                 </div>
-                <p>{movie.release_date}</p>
-                <div className={"genre_container"}>
-                    {
-                        movie?.genre_ids.map(value => <div key={value}> {findGenre(value)}</div>)
-                    }
-                </div>
-                <div className={'rating'}>vote_average:{vote_average}</div>
-                {/*<Rating rating={movie.vote_average}/>*/}
+                <h4>{movie.release_date}</h4>
+                {/*<div className={"genre_container"}>*/}
+                {/*    {*/}
+                {/*        movie?.genre_ids.map(value => <div key={value}> {findGenre(value)}</div>)*/}
+                {/*    }*/}
+                {/*</div>*/}
+                <Rating rating={movie.vote_average}/>
             </div>
         </Link>
     )

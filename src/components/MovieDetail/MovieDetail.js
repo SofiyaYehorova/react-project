@@ -27,13 +27,12 @@ const MovieDetail = () => {
 
     return (
         <div className={'movie_detail-container'}>
-            {/*<FontAwesomeIcon className={'back-icon'} icon={faArrowLeft} onClick={() => navigate(-1)}/>*/}
             <h2>{movie?.original_title}</h2>
             {movie ?
                 <div className={'movie_detail-box'}>
 
 
-                        <img src={image + movie?.poster_path} className={'image_detail'} alt={movie?.title}/>
+                    <img src={image + movie?.poster_path} className={'image_detail'} alt={movie?.title}/>
 
                     <div className={'movie_content_box'}>
                         <div>
@@ -44,7 +43,8 @@ const MovieDetail = () => {
                         </div>
                         <div>Released:{movie?.release_date}</div>
                         <div>Rating: {movie?.vote_average}</div>
-                        <div>Runtime: {movie?.runtime} min</div><br/>
+                        <div>Runtime: {movie?.runtime} min</div>
+                        <br/>
 
                         <div>Overview:{movie?.overview}</div>
                     </div>

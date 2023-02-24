@@ -43,9 +43,7 @@ const MoviesList = () => {
 
                 }
             </div>
-            <div>
-                <Pagination/>
-            </div>
+            <Pagination/>
         </div>
     );
 };
