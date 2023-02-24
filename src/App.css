@@ -1,12 +1,91 @@
-/*@import url("https://fonts.googleapis.com/css2?family=Sourse+Sans+Pro:300,300i,400,400i,600,600i,700&display=swap");*/
-
 body {
-    font-family: "Source Sans Pro", sans-serif;
     margin: 0;
     padding: 0;
-    text-decoration: none;
-    list-style-type: none;
-    outline: none;
-    /*background-image: url("images/background1.jpg");*/
-    background: wheat;
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjWHqdQH4qHNXVVOEGQO1bIO4833trvnDY-YxUaLhq2hJ5K8T9mI2lizl6sdu2y1SYLRA&usqp=CAU");
+
 }
+
+.wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #d1ffff;
+    height: 100px;
+    color: darkblue;
+}
+
+.icon-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    /*margin-right: 10px;*/
+}
+
+.light, .night {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.genre_select {
+    display: flex;
+    width: 30%;
+    flex-direction: column;
+    /*flex-wrap: wrap;*/
+    /*justify-content: space-around;*/
+    /*gap: 10px;*/
+    /*margin-top: 20px;*/
+}
+
+.containerMovies {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.movie {
+    width: 23%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    margin-left: 2%;
+}
+
+/*.movieCard {*/
+/*    width: 30%;*/
+/*    display: flex;*/
+/*    border: 2px solid red;*/
+
+/*}*/
+
+.box_movieCard {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.left_part_movieCard {
+    width: 70px;
+}
+
+/*.imageCard {*/
+/*    width: 200px;*/
+/*    height: 300px;*/
+/*}*/
+
+.right_part_movieCard {
+    width: 27%;
+    display: flex;
+    flex-direction: column;
+}
+
+.rating {
+    width: 100%;
+    height: 2%;
+}
+
+
+

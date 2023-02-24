@@ -1,7 +1,0 @@
-.Movies{
-    display: flex;
-
-    flex-wrap: wrap;
-    justify-content: space-between;
-    /*background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2xbEtJdMu5mPPkpxT4nbIQ6Ml1p6-oSWayflhHTu_9AO86z-Vt7vcNH2AIqSAf6m3uBM&usqp=CAU");*/
-}

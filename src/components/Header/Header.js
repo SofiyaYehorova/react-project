@@ -5,8 +5,7 @@ import logo from '../../image/logo.png';
 import day from '../../image/sun.png'
 import moon from '../../image/moon.png'
 
-import '../../index.css'
-
+import '../../App.css'
 
 const Header = () => {
 

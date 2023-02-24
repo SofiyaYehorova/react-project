@@ -8,7 +8,7 @@ const initialState = {
     page: 1,
     genres: [],
     currentGenre: [],
-    // show: true,
+    show: true,
     errors: null,
     loading: false,
 };
@@ -84,9 +84,9 @@ const moviesSlice = createSlice({
         prevPage: (state, action) => {
             state.page -= -1
         },
-        // show: (state, action) => {
-        //     state.show = action.payload
-        // },
+        show: (state, action) => {
+            state.show = action.payload
+        },
         selectGenre: (state, action) => {
             state.currentGenre.push(action.payload);
         },
@@ -137,35 +137,27 @@ const moviesSlice = createSlice({
             .addCase(searchByGenre.pending, (state) => {
                 state.loading = true;
             })
-            // .addCase(getAllMovies.rejected, (state, action) => {
-            //     state.error = action.payload
-            //     state.loading = false
-            // })
-            // .addCase(getMovieById.rejected, (state, action) => {
-            //     state.error = action.payload
-            //     state.loading = false
-            // })
-            // .addCase(searchMovie.rejected, (state, action) => {
-            //     state.loading = false
-            // })
-            // .addCase(getAllGenres.rejected, (state, action) => {
-            //     state.loading = false
-            // })
-            // .addCase(searchByGenre.rejected, (state, action) => {
-            //     state.loading = true
-            // })
+    // .addCase(getAllMovies.rejected, (state, action) => {
+    //     state.error = action.payload
+    //     state.loading = false
+    // })
+    // .addCase(getMovieById.rejected, (state, action) => {
+    //     state.error = action.payload
+    //     state.loading = false
+    // })
+    // .addCase(searchMovie.rejected, (state, action) => {
+    //     state.loading = false
+    // })
+    // .addCase(getAllGenres.rejected, (state, action) => {
+    //     state.loading = false
+    // })
+    // .addCase(searchByGenre.rejected, (state, action) => {
+    //     state.loading = true
+    // })
 });
 
 const {
-    reducer: moviesReducer
-    , actions: {
-        nextPage, prevPage,
-        // show,
-        setPage,
-        selectGenre,
-        deleteGenre
-    }
-} = moviesSlice;
+    reducer: moviesReducer, actions: {nextPage, prevPage, show, setPage, selectGenre, deleteGenre}} = moviesSlice;
 
 const moviesAction = {
     getAllMovies,
@@ -175,7 +167,7 @@ const moviesAction = {
     searchByGenre,
     nextPage,
     prevPage,
-    // show,
+    show,
     setPage,
     selectGenre,
     deleteGenre
