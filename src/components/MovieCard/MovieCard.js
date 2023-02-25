@@ -10,7 +10,7 @@ import css from '../../App.css'
 
 
 const MovieCard = ({movie}) => {
-    const {original_title, poster_path, vote_average} = movie;
+    const {original_title, poster_path} = movie;
     const {genres} = useSelector(state => state.movies);
 
     const findGenre = (id) => {
@@ -43,13 +43,8 @@ const MovieCard = ({movie}) => {
                         </div>
                     </div>
                 </div>
-                <h4>{movie.release_date}</h4>
-                {/*<div className={"genre_container"}>*/}
-                {/*    {*/}
-                {/*        movie?.genre_ids.map(value => <div key={value}> {findGenre(value)}</div>)*/}
-                {/*    }*/}
-                {/*</div>*/}
                 <Rating rating={movie.vote_average}/>
+                <h4>{movie.release_date}</h4>
             </div>
         </Link>
     )

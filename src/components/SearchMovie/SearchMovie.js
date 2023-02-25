@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch} from "react-redux";
 
-import {moviesAction as movieActions} from "../../redux";
+import {moviesAction} from "../../redux";
 
 
-// searchMovieV2 = "https://api.themoviedb.org/3/search/movie?api_key=59c369ca7be9658bba6519e92a223e22&query"
 const SearchMovie = () => {
 
     const [query, setQuery] = useState('');
@@ -12,14 +11,14 @@ const SearchMovie = () => {
 
     useEffect(() => {
         if (query) {
-            dispatch(movieActions.searchMovie(query))
+            dispatch(moviesAction.searchMovie(query))
         }
-    }, [query])
+    }, [dispatch, query])
 
     const clear = (e) => {
         e.preventDefault()
         if (query) {
-            dispatch(movieActions.searchMovie(query))
+            dispatch(moviesAction.searchMovie(query))
         }
         setQuery('');
     }

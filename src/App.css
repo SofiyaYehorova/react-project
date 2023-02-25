@@ -5,6 +5,8 @@ body {
 
 }
 
+/*header*/
+
 .header {
     width: 100%;
     display: flex;
@@ -15,8 +17,8 @@ body {
     color: darkblue;
 }
 
-a {
-    text-decoration: none;
+.header-list{
+    margin-left: 50px;
 }
 
 .icon-logo {
@@ -29,14 +31,18 @@ a {
     width: 25px;
     height: 25px;
     border-radius: 50%;
+    margin-right: 25px;
+    cursor: pointer;
 }
 
+/*Genre*/
 .genre_select {
     display: flex;
     width: 30%;
     flex-direction: column;
 }
 
+/*movieList*/
 .containerMovies {
     width: 100%;
     display: flex;
@@ -46,17 +52,7 @@ a {
     margin-top: 10px;
 }
 
-.button_pagination {
-    margin-bottom: 10px;
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.btn {
-    width: 150px;
-    height: 40px;
-}
+/*movieCard*/
 
 .movie {
     width: 23%;
@@ -84,22 +80,40 @@ a {
     width: 70%;
 }
 
+.no-photo{
+    border-radius: 30px;
+    height: 70%;
+    width: 100%;
+}
+
 .right_part_movieCard {
     width: 30%;
     display: flex;
     flex-direction: column;
 }
 
+.genre-badge{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.genre-badge_button{
+    background: aliceblue;
+    border-radius: 7px;
+}
+
 .rating {
     height: 2%;
 }
+
+/*movieDetail*/
 
 .movie_detail-container {
     width: 100%;
     height: 600px;
     display: flex;
     flex-direction: column;
-
 }
 
 h2 {
@@ -111,20 +125,17 @@ h2 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
 }
 
 .image_detail {
     width: 40%;
     height: 90%;
-
 }
 
 .movie_content_box {
     width: 50%;
     display: flex;
     flex-direction: column;
-
 }
 
 .back_to_list {
@@ -134,14 +145,30 @@ h2 {
     justify-content: right;
     text-align: center;
 }
-.genre-badge{
+ /*pagination*/
+
+.button_pagination {
+    margin-bottom: 10px;
+    margin-top: 20px;
     display: flex;
-    flex-direction: column;
-    justify-content: left;
+    justify-content: space-between;
 }
-.genre-badge_button{
-    background: aliceblue;
-    border-radius: 7px;
+
+.btn {
+    width: 150px;
+    height: 40px;
 }
+
+a {
+    text-decoration: none;
+}
+
+
+
+
+
+
+
+
 
 

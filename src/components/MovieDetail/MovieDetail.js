@@ -11,14 +11,14 @@ const MovieDetail = () => {
 
     const {id} = useParams();
     const navigate = useNavigate();
-    const {movies, movie, genres} = useSelector(state => state.movies);
+    const {movie, genres} = useSelector(state => state.movies);
     const dispatch = useDispatch();
 
     dispatch(moviesAction.show(false))
 
     useEffect(() => {
         if (id) dispatch(moviesAction.getMovieById(id))
-    }, [id])
+    }, [id, dispatch])
 
     const findGenre = (id) => {
         const genre = genres?.genres?.find(value => value.id === id)
@@ -30,8 +30,6 @@ const MovieDetail = () => {
             <h2>{movie?.original_title}</h2>
             {movie ?
                 <div className={'movie_detail-box'}>
-
-
                     <img src={image + movie?.poster_path} className={'image_detail'} alt={movie?.title}/>
 
                     <div className={'movie_content_box'}>

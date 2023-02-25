@@ -122,38 +122,13 @@ const moviesSlice = createSlice({
                 state.movies = action.payload;
                 state.loading = false;
             })
-            // .addCase(getAllMovies.pending, (state) => {
-            //     state.loading = true
-            // })
-            // .addCase(getMovieById.pending, (state) => {
-            //     state.loading = true
-            // })
             .addCase(searchMovie.pending, (state) => {
                 state.loading = true
             })
-            // .addCase(getAllGenres.pending, (state, action) => {
-            //     state.loading = false
-            // })
             .addCase(searchByGenre.pending, (state) => {
                 state.loading = true;
             })
-    // .addCase(getAllMovies.rejected, (state, action) => {
-    //     state.error = action.payload
-    //     state.loading = false
-    // })
-    // .addCase(getMovieById.rejected, (state, action) => {
-    //     state.error = action.payload
-    //     state.loading = false
-    // })
-    // .addCase(searchMovie.rejected, (state, action) => {
-    //     state.loading = false
-    // })
-    // .addCase(getAllGenres.rejected, (state, action) => {
-    //     state.loading = false
-    // })
-    // .addCase(searchByGenre.rejected, (state, action) => {
-    //     state.loading = true
-    // })
+
 });
 
 const {

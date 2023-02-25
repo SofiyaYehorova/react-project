@@ -12,7 +12,7 @@ import css from '../../App.css'
 const MoviesList = () => {
     const [, setMovies] = useState([]);
     const {movies, loading, currentGenre, page} = useSelector(state => state.movies);
-    const [query, setQuery] = useSearchParams();
+    const [query] = useSearchParams();
     const queryPage = query.get('page');
     const dispatch = useDispatch();
 
@@ -21,7 +21,7 @@ const MoviesList = () => {
         moviesAction.setPage(queryPage)
         dispatch(moviesAction.getAllMovies({page: queryPage}))
             .then(({payload}) => setMovies(payload.results))
-    }, [page, queryPage]);
+    }, [page, queryPage, dispatch]);
 
     useEffect(() => {
         if (!currentGenre) {
@@ -29,7 +29,7 @@ const MoviesList = () => {
         } else {
             dispatch(moviesAction.searchByGenre({currentGenre}))
         }
-    }, [page, currentGenre]);
+    }, [page, currentGenre, dispatch]);
 
     return (
         <div>
@@ -39,8 +39,6 @@ const MoviesList = () => {
                     </div>
                     :
                     movies?.results?.map(movie => <MovieCard key={movie.id} movie={movie}/>)
-
-
                 }
             </div>
             <Pagination/>

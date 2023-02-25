@@ -3,6 +3,8 @@ import {useDispatch, useSelector} from "react-redux";
 
 import {moviesAction} from "../../redux";
 
+import css from '../../App.css'
+
 
 const Genres = () => {
     const {genres, currentGenre} = useSelector(state => state.movies);
@@ -10,7 +12,7 @@ const Genres = () => {
 
     useEffect(() => {
         dispatch(moviesAction.getAllGenres())
-    }, [])
+    }, [dispatch])
 
     const handleSubmit = (id) => {
         if (currentGenre?.includes(id)) {
