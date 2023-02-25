@@ -6,7 +6,6 @@ import {SearchMovie} from "../SearchMovie/SearchMovie";
 
 import logo from '../../image/logo.png';
 import day from '../../image/sun.png'
-import moon from '../../image/moon.png'
 
 import '../../App.css'
 
@@ -32,9 +31,6 @@ const Header = ({toggleTheme}) => {
                 <div className={'theme'}>
                     <img src={day} className={'light'}  onClick={toggleTheme} alt={day}/>
                 </div>
-                {/*<div>*/}
-                {/*    <img src={moon} className={'night'} onClick={toggleTheme} alt={moon}/>*/}
-                {/*</div>*/}
             </div>
 
         </div>
